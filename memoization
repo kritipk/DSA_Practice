@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+int travelGrid(int m,int n, vector<int>arr)
+{
+if(m==0 || n==0)
+return 0;
+if(m==1 && n==1)
+return 1;
+if(arr[m]>1 || arr[n]>1)
+{
+	return arr[m+n];
+}
+else
+{
+arr.push_back(travelGrid(m-1,n,arr)+travelGrid(m,n-1,arr));
+return travelGrid(m-1,n,arr)+travelGrid(m,n-1,arr);
+}
+}
+int main() {
+	int m,n;
+	cin>>m>>n;
+	vector<int>arr(m+n);
+	cout<<travelGrid(m,n,arr);
+	return 0;
+}
