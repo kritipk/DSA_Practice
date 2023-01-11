@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+using namespace std;
+int fib(int n, vector<int>arr)
+{
+	if(n<=2)
+	return 1;
+	arr.push_back(fib(n-1,arr)+fib(n-2,arr));
+	return fib(n-1,arr)+fib(n-2,arr);
+}
+int main() {
+	// your code goes here
+	int n;
+	cin>>n;
+	vector<int>arr(n);
+	cout<<fib(n,arr);
