@@ -1,0 +1,20 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+string a;
+string b;
+cin>>a>>b;
+int s1=a.size();
+int s2=b.size();
+cout<<s1<<" "<<s2<<"\n";
+string c;
+c=a+b;
+cout<<c<<"\n";
+char ch=a[0];
+a[0]=b[0];
+b[0]=ch;
+cout<<a<<" "<<b;
+   return 0;
+}
