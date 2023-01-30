@@ -13,8 +13,35 @@ string rtrim(const string &);
  */
 
 vector<int> gradingStudents(vector<int> grades) {
-
+int n= grades.size();
+int m,d,j,a;
+vector<int>marks;
+for (int i=0;i<n;i++)
+{
+    m=grades[i];
+    if(m>=38)
+    {
+        d=m/5;
+        j=(d+1)*5;
+        if ((j-m)<3) 
+        {
+            a = j;
+        }
+        else  
+        {
+            a=m;
+        }
+    }
+    else 
+    {
+        a=m;
+    }
+    marks.push_back(a);
+    }
+    
+    return marks;
 }
+
 
 int main()
 {
