@@ -1,0 +1,23 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+     int N , a ;
+       vector<int> integers;
+       cin>>N;
+       for (int i ; i<N; i++) {
+       cin>>a;
+       integers.push_back(a);
+       }
+       sort(integers.begin() , integers.end());
+       for (int i; i<N; i++) {
+       cout<<integers[i]<<' ';
+       }
+    
+    return 0;
+}
