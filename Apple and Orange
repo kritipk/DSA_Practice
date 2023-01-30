@@ -19,7 +19,37 @@ vector<string> split(const string &);
  */
 
 void countApplesAndOranges(int s, int t, int a, int b, vector<int> apples, vector<int> oranges) {
-
+int k,p,g,i,j,c=0,cc=0;
+int m = apples.size();
+int n = oranges.size();
+vector<int>A;
+vector<int>O;
+for(i=0;i<m;i++)
+{
+    k=apples[i]+a;
+    A.push_back(k);
+}
+for(j=0;j<n;j++)
+{
+    p=oranges[j]+b;
+    O.push_back(p);
+}
+for(i=0;i<m;i++)
+{
+        if(A[i]>=s && A[i]<=t)
+        {
+            c++;
+        } 
+}
+cout<<c<<"\n";
+for(j=0;j<n;j++)
+{
+       if(O[j]>=s&&O[j]<=t)
+       {
+           cc++;
+       }
+}
+cout<<cc<<"\n";
 }
 
 int main()
