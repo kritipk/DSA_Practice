@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int alternateDigitSum(int n) {
+        vector<int>dig;
+        int sum=0;
+        int r,rev=0;
+        while(n!=0)
+        {
+              r= n % 10;
+              rev= r;
+              dig.push_back(rev);
+              n /= 10;
+        }
+        int s= dig.size();
+        if(s%2==0)
+        {
+        for(int i=0;i<s;i++)
+        {
+            if(i%2!=0)
+            sum=sum+dig[i];
+            else 
+                sum=sum-dig[i];
+        }
+        }
+        else{
+            for(int i=0;i<s;i++)
+        {
+            if(i%2==0)
+            sum=sum+dig[i];
+            else 
+                sum=sum-dig[i];
+        }
+        }
+        return sum;
+    }
+};
