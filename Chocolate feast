@@ -22,6 +22,7 @@ int chocolateFeast(int n, int c, int m) {
     while(w>=m){
         t+=w/m;
         w = w%m +(w/m);
+        cout<<w;
     }
     return t;
 }
