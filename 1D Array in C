@@ -14,5 +14,7 @@ int main() {
         sum = sum+ar[i];
     }  
     printf("%d",sum);
+    //sum
+    
     return 0;
 }
