@@ -1,0 +1,20 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+     int n=x;
+     long long rev=0;
+     int s;
+     while(n!=0)
+     {
+         s=n%10;
+         rev=(rev*10)+s;
+         n=n/10;
+     } 
+     if(x<0)
+     return false;  
+     if(rev==x)
+     return true;
+     else 
+     return false;
+    }
+};
