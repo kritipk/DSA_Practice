@@ -25,6 +25,7 @@ int chocolateFeast(int n, int c, int m) {
         cout<<w;
     }
     return t;
+    cout<<t
 }
 
 int main()
