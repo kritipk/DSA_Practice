@@ -1,0 +1,31 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+               string curr = "1"; 
+        
+        if(n == 1) return curr;
+        
+
+        for(int nn = 2; nn <= n; nn++){
+            
+            string store = ""; 
+            
+            int i = 0, len = curr.length();
+            while(i < len){
+                char ch = curr[i];
+                int j = i + 1;
+                while(j < len && curr[j] == ch) j++;
+                
+                int times = j - i;
+                store += (times + '0'); 
+                store += ch;
+                
+                i = j;
+            }
+            
+            curr = store;
+        }
+        
+        return curr; 
+    }
+};
