@@ -1,0 +1,62 @@
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <map>
+using namespace std;
+
+string get_tag(string str) {
+    string ss;
+    ss = str.substr(1);
+    ss = ss.erase(0, ss.find_first_not_of(" "));
+    return ss.erase(ss.find_first_of(" >"));
+};
+
+int main() {
+    int n,q;
+    cin >> n >> q;
+    cin.ignore();
+
+    map<string, string> attr;
+    string str;
+    string current_tag = "";
+    for(int i = 0; i< n; ++i ) {
+
+        getline(cin, str);
+
+        if (str.substr(0,2) == "</") {
+            if (current_tag.find('.') == string::npos) current_tag = "";
+            else current_tag = current_tag.substr(0, current_tag.find_last_of('.'));
+        } else {
+            if (current_tag.empty() ) current_tag = get_tag(str);
+            else current_tag += "." + get_tag(str);
+            for(size_t eq = str.find('='); eq < str.size(); eq = str.find('=', eq + 1)) {
+                size_t idx = eq - 1;
+                while (str[idx] == ' ') idx--;
+                size_t start = idx;
+                while (str[idx] != ' ') idx--;
+                string name = str.substr(++idx, start - idx);
+                idx = eq +1;
+                while (str[idx] != '"') idx++;
+                start = ++idx;
+                while (str[idx] != '"') idx++;
+                string value = str.substr(start, idx-start);
+                attr.insert(pair<string, string>(current_tag + "~" + name, value));
+            }
+        }
+    }
+
+    string* result = new string [q];
+    for(int i = 0; i < q; ++i ) { 
+        cin >> str;
+        result[i] = "Not Found!";
+        auto it = attr.find(str);
+        it = attr.find(str);
+        if (it != attr.end())  result[i] = it->second;
+    }
+
+    for (int i = 0; i < q; ++i) cout << result[i] << "\n"; 
+    delete[] result;
+    return 0;
+}
