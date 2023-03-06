@@ -1,0 +1,26 @@
+class Solution {
+public:
+        vector<vector<int>> ans;
+    void f(vector<int> A,int l)
+    {
+        if(l==A.size())
+        {
+            ans.push_back(A);
+            return;
+        }
+        unordered_set<int> seen;  
+        for(int i=l;i<A.size();i++)
+        {
+            if(seen.find(A[i])!=seen.end())
+            continue;
+            swap(A[i],A[l]);
+            f(A,l+1);
+            swap(A[i],A[l]);
+            seen.insert(A[i]);
+        }
+    }
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        f(nums,0);
+        return ans;        
+    }
+};
