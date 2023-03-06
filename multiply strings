@@ -1,0 +1,51 @@
+class Solution {
+public:
+    string addi(string ans, string curr){
+        int carry=0;
+        string ans1;
+        while (!ans.empty() || !curr.empty() || carry>0){
+            int v1=0, v2=0;
+            if (!ans.empty()){
+                v1= ans.back()-'0';
+                ans.pop_back();
+            }
+            if (!curr.empty()){
+                v2= curr.back()-'0';
+                curr.pop_back();
+            }
+            int val= v1+v2+carry;
+            carry= val/10;
+            string tmp;
+            tmp+= ((val%10)+'0');
+            ans1= tmp+ans1;
+        }
+        return ans1;
+    }
+    string multiply(string num1, string num2) {
+        if (num1=="0" || num2=="0")return "0";
+        string ans;
+        int cnt=0;
+        while (!num2.empty()){
+            int dig= num2.back()-'0';
+            num2.pop_back();
+            int carry=0;
+            string curr;
+            for (int i= num1.size()-1; i>=0; i--){
+                int val= (num1[i]-'0')*dig;
+                val+= carry;
+                carry= val/10;
+                string v;
+                v+= ((val%10)+'0');
+                curr= v +curr;
+            }
+            if (carry!=0){string tmp; tmp+= (carry+'0'); curr= tmp+curr;}
+            for (int i=0; i<cnt; i++)curr+='0';
+            if (ans.size()==0)ans= curr;
+            else ans= addi(ans,curr);
+            cout<<"Curr: "<<curr<<", "<<ans<<endl;
+            cnt++;
+        }
+        
+        return ans;
+    }
+};
