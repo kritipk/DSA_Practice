@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int longestValidParentheses(string s) {
+        int ans = 0, n = s.length();
+        vector<int> v;
+        for(int i = 0; i < n; i++){
+            if(s[i]=='('){
+                v.push_back(i);
+            }else{
+                if(!v.empty() && s[v.back()]=='(')v.pop_back();
+                else v.push_back(i);
+            }
+        }
+        if(v.empty()){
+            return n;
+        }
+            // cout<<n<<" ";
+        while(!v.empty()){
+            ans = max(ans,n-v.back()-1);
+            n = v.back();
+            // cout<<n<<" ";
+            v.pop_back();
+        }
+        return ans = max(ans,n);
+    }
+};
