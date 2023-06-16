@@ -1,0 +1,32 @@
+class Solution {
+public:
+    const long Mod=1e9+7;
+    vector<vector<long>> C;
+    long compute_C_N_choose_K(int N, int K){
+        if (K>N/2) K=N-K;
+        C.assign(N+1, vector<long>(K+1, 0));
+        for(int i=0; i<=N; i++){
+            C[i][0]=1;
+            for(int j=1; j<=min(i, K);j++)
+                C[i][j]=(C[i-1][j-1]+C[i-1][j])%Mod;
+        }
+        return C[N][K];
+    }
+
+    long Subproblem(vector<int>& nums){
+        int n=nums.size();
+        if (n<=2) return 1;
+         vector<int> left, right;
+        int root=nums[0];
+        for (int i=1; i<n; i++){
+            if (root<nums[i]) right.push_back(nums[i]);
+            else left.push_back(nums[i]);
+        }
+        long r=Subproblem(right)%Mod, l=Subproblem(left)%Mod;
+        return compute_C_N_choose_K(n-1, left.size())*r%Mod*l%Mod;
+
+    }
+    int numOfWays(vector<int>& nums) {
+       return (Subproblem(nums)-1)%Mod;
+    }
+};no
